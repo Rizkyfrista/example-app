@@ -83,8 +83,8 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Nama Intitusi Terakhir</label>
-                            <input type="text" class="form-control" v-model="post.pendidikan_form.namaintitusiterakhir">
+                            <label class="form-label">Nama Intitusi Akademik</label>
+                            <input type="text" class="form-control" v-model="post.pendidikan_form.namaintitusiakademik">
                             <div v-if="errors.title" class="mt-2 alert alert-danger">
                                 {{ errors.title }}
                             </div>
@@ -114,7 +114,8 @@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
                                 PENDIDIKAN</button>
-                            <button type="reset" class="btn btn-warning btn-md shadow-sm" v-on:click="reset">RESET</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetPendidikan">RESET</button>
                         </div>
                     </form>
 
@@ -139,10 +140,18 @@
                                         <td>{{ pendidikan.tahunlulus }}</td>
                                         <td>{{ pendidikan.ipk }}</td>
                                         <td class="text-center">
-                                            <Link :href="`/pendidikan/${post.id}/edit`" class="btn btn-sm btn-primary me-2">
+                                            <!-- <Link :href="`/pendidikan/${pendidikan.id}/edit`"
+                                                class="btn btn-sm btn-primary me-2">
                                             EDIT</Link>
                                             <button @click.prevent="deletePost(`${post.id}`)"
-                                                class="btn btn-sm btn-danger">DELETE</button>
+                                                class="btn btn-sm btn-danger">DELETE</button> -->
+
+
+                                            <button class="btn btn-sm btn-primary me-2" Link
+                                                :href="`/pendidikan/${pendidikan.id}/edit`"
+                                                v-on:click.prevent="editPendidikan">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deletePendidikan(`${pendidikan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -179,7 +188,8 @@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
                                 RIWAYAT PELATIHAN</button>
-                            <button type="reset" class="btn btn-warning btn-md shadow-sm" v-on:click="reset">RESET</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetRiwayatPelatihan">RESET</button>
                         </div>
                     </form>
 
@@ -200,11 +210,11 @@
                                         <td>{{ riwayatpelatihan.sertifikat }}</td>
                                         <td>{{ riwayatpelatihan.tahun }}</td>
                                         <td class="text-center">
-                                            <Link :href="`/riwayatpelatihan/${post.id}/edit`"
-                                                class="btn btn-sm btn-primary me-2">
-                                            EDIT</Link>
-                                            <button @click.prevent="deletePost(`${post.id}`)"
-                                                class="btn btn-sm btn-danger">DELETE</button>
+                                            <button class="btn btn-sm btn-primary me-2" Link
+                                                :href="`/post.riwayatpelatihan/${riwayatpelatihan.id}/edit`"
+                                                v-on:click.prevent="editRiwayatPelatihan">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deleteRiwayatPelatihan(`${riwayatpelatihan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -248,7 +258,8 @@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
                                 RIWAYAT PEKERJAAN</button>
-                            <button type="reset" class="btn btn-warning btn-md shadow-sm" v-on:click="reset">RESET</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetRiwayatPekerjaan">RESET</button>
                         </div>
                     </form>
 
@@ -271,11 +282,11 @@
                                         <td>{{ riwayatpekerjaan.pendapatanterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.tahun }}</td>
                                         <td class="text-center">
-                                            <Link :href="`/riwayatpekerjaan/${post.id}/edit`"
-                                                class="btn btn-sm btn-primary me-2">
-                                            EDIT</Link>
-                                            <button @click.prevent="deletePost(`${post.id}`)"
-                                                class="btn btn-sm btn-danger">DELETE</button>
+                                            <button class="btn btn-sm btn-primary me-2" Link
+                                                :href="`/post.riwayatpekerjaan/${riwayatpekerjaan.id}/edit`"
+                                                v-on:click.prevent="editRiwayatPekerjaan">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deleteRiwayatPekerjaan(`${riwayatpekerjaan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -285,7 +296,8 @@
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">SIMPAN</button>
-                        <button type="reset" class="btn btn-warning btn-md shadow-sm" v-on:click="reset">RESET</button>
+                        <button type="reset" class="btn btn-warning btn-md shadow-sm"
+                            v-on:click.prevent="reset">RESET</button>
                     </div>
                 </form>
             </div>
@@ -355,26 +367,51 @@ export default {
             return post.riwayatpekerjaan_data.push(post.riwayatpekerjaan_form);
         }
 
-        function reset() {
-            console.log('tezst')
-            return Object.keys(post.pendidikan_form).forEach(key => {
-                delete post.pendidikan_form[key];
-            });
+        function resetPendidikan() {
+            console.log('test')
+            post.pendidikan_form = {}
         }
 
         function resetRiwayatPelatihan() {
             console.log('test')
-            return Object.keys(post.riwayatpelatihan_form).forEach(key => {
-                delete post.riwayatpelatihan_form[key];
-            });
+            post.riwayatpelatihan_form = {}
         }
 
         function resetRiwayatPekerjaan() {
             console.log('test')
-            return Object.keys(post.riwayatpekerjaan_form).forEach(key => {
-                delete post.riwayatpekerjaan_form[key];
-            });
+            post.riwayatpekerjaan_form = {}
         }
+
+        function editPendidikan() {
+            console.log(post.pendidikan_data);
+            post.pendidikan_data.editPendidikan(post.pendidikan_data);
+        }
+
+        function deletePendidikan() {
+            console.log('test')
+            post.pendidikan_data = {}
+        }
+
+        function editRiwayatPelatihan() {
+            console.log(post.riwayatpelatihan_data);
+            post.riwayatpelatihan_data.editRiwayatPelatihan(post.riwayatpelatihan);
+        }
+
+        function deleteRiwayatPelatihan() {
+            console.log(post.riwayatapelatihan_data);
+            post.riwayatpelatihan_data = {}
+        }
+
+        function editRiwayatPekerjaan() {
+            console.log(post.riwayatpekerjaan_data);
+            post.riwayatpekerjaan_data.editRiwayatPekerjaan(post.riwayatpekerjaan_data);
+        }
+
+        function deleteRiwayatPekerjaan() {
+            console.log('post.riwayatpekerjaan_data');
+            post.riwayatpekerjaan_data = {}
+        }
+
 
         //function storePost
         function storePost() {
@@ -411,9 +448,15 @@ export default {
             storePendidikan,
             storeRiwayatPelatihan,
             storeRiwayatPekerjaan,
-            reset,
+            resetPendidikan,
             resetRiwayatPelatihan,
             resetRiwayatPekerjaan,
+            editPendidikan,
+            deletePendidikan,
+            editRiwayatPelatihan,
+            deleteRiwayatPelatihan,
+            editRiwayatPekerjaan,
+            deleteRiwayatPekerjaan,
         }
 
     },
