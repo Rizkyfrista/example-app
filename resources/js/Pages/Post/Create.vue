@@ -297,8 +297,7 @@
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">SIMPAN</button>
-                        <button class="btn btn-warning btn-md shadow-sm"
-                            v-on:click.prevent="resetStorePost, resetPendidikan, resetRiwayatPelatihan, resetRiwayatPekerjaan">RESET</button>
+                        <button class="btn btn-warning btn-md shadow-sm" v-on:click.prevent="resetStorePost">RESET</button>
                     </div>
                 </form>
             </div>
@@ -472,7 +471,7 @@ export default {
 
         function resetStorePost() {
             console.log('test')
-            post.storePost = {}
+            post.firstname
         }
 
         //function storePost
@@ -488,6 +487,7 @@ export default {
             let email = post.email
             let appliedposition = post.appliedposition
             let expectedsalary = post.expectedsalary
+
 
             //send data
             Inertia.post('/posts/', {
