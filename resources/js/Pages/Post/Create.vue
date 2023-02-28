@@ -81,6 +81,7 @@
                             <div v-if="errors.title" class="mt-2 alert alert-danger">
                                 {{ errors.title }}
                             </div>
+
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama Intitusi Akademik</label>
@@ -133,7 +134,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pendidikan in post.pendidikan_data" :key="pendidikan.id">
+                                    <tr v-for="pendidikan in post.pendidikan_data"
+                                        :key="pendidikan.jenjangpendidikanterakhir">
                                         <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
                                         <td>{{ pendidikan.namaintitusiakademik }}</td>
                                         <td>{{ pendidikan.jurusan }}</td>
@@ -147,11 +149,10 @@
                                                 class="btn btn-sm btn-danger">DELETE</button> -->
 
 
-                                            <button class="btn btn-sm btn-primary me-2" Link
-                                                :href="`/pendidikan/${pendidikan.id}/edit`"
-                                                v-on:click.prevent="editPendidikan">Edit</button>
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editPendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deletePendidikan(`${pendidikan.id}`)">Delete</button>
+                                                v-on:click.prevent="deletePendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -205,16 +206,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data" :key="riwayatpelatihan.id">
+                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data"
+                                        :key="riwayatpelatihan.namakursusseminar">
                                         <td>{{ riwayatpelatihan.namakursusseminar }}</td>
                                         <td>{{ riwayatpelatihan.sertifikat }}</td>
                                         <td>{{ riwayatpelatihan.tahun }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-primary me-2" Link
-                                                :href="`/post.riwayatpelatihan/${riwayatpelatihan.id}/edit`"
-                                                v-on:click.prevent="editRiwayatPelatihan">Edit</button>
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deleteRiwayatPelatihan(`${riwayatpelatihan.id}`)">Delete</button>
+                                                v-on:click.prevent="deleteRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -276,17 +277,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpekerjaan in post.riwayatpekerjaan_data" :key="riwayatpekerjaan.id">
+                                    <tr v-for="riwayatpekerjaan in post.riwayatpekerjaan_data"
+                                        :key="riwayatpekerjaan.namaperusahaan">
                                         <td>{{ riwayatpekerjaan.namaperusahaan }}</td>
                                         <td>{{ riwayatpekerjaan.posisiterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.pendapatanterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.tahun }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-primary me-2" Link
-                                                :href="`/post.riwayatpekerjaan/${riwayatpekerjaan.id}/edit`"
-                                                v-on:click.prevent="editRiwayatPekerjaan">Edit</button>
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deleteRiwayatPekerjaan(`${riwayatpekerjaan.id}`)">Delete</button>
+                                                v-on:click.prevent="deleteRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -296,8 +297,8 @@
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">SIMPAN</button>
-                        <button type="reset" class="btn btn-warning btn-md shadow-sm"
-                            v-on:click.prevent="reset">RESET</button>
+                        <button class="btn btn-warning btn-md shadow-sm"
+                            v-on:click.prevent="resetStorePost, resetPendidikan, resetRiwayatPelatihan, resetRiwayatPekerjaan">RESET</button>
                     </div>
                 </form>
             </div>
@@ -354,17 +355,20 @@ export default {
 
         function storePendidikan() {
             console.log(post.pendidikan_form);
-            return post.pendidikan_data.push(post.pendidikan_form);
+            post.pendidikan_data.push(post.pendidikan_form);
+            post.pendidikan_form = {}
         }
 
         function storeRiwayatPelatihan() {
             console.log(post.riwayatpelatihan_form);
-            return post.riwayatpelatihan_data.push(post.riwayatpelatihan_form);
+            post.riwayatpelatihan_data.push(post.riwayatpelatihan_form);
+            post.riwayatpelatihan_form = {}
         }
 
         function storeRiwayatPekerjaan() {
             console.log(post.riwayatpekerjaan_form);
-            return post.riwayatpekerjaan_data.push(post.riwayatpekerjaan_form);
+            post.riwayatpekerjaan_data.push(post.riwayatpekerjaan_form);
+            post.riwayatpekerjaan_form = {}
         }
 
         function resetPendidikan() {
@@ -382,36 +386,94 @@ export default {
             post.riwayatpekerjaan_form = {}
         }
 
-        function editPendidikan() {
-            console.log(post.pendidikan_data);
-            post.pendidikan_data.editPendidikan(post.pendidikan_data);
+        function editPendidikan(id) {
+            for (var i = 0; i < post.pendidikan_data.length; i++) {
+
+                if (Object.values(post.pendidikan_data[i]).indexOf(id) !== -1) {
+                    post.pendidikan_form.jenjangpendidikanterakhir = post.pendidikan_data[i].jenjangpendidikanterakhir
+                    post.pendidikan_form.namaintitusiakademik = post.pendidikan_data[i].namaintitusiakademik
+                    post.pendidikan_form.jurusan = post.pendidikan_data[i].jurusan
+                    post.pendidikan_form.tahunlulus = post.pendidikan_data[i].tahunlulus
+                    post.pendidikan_form.ipk = post.pendidikan_data[i].ipk
+                    console.log('data ditemukan')
+                    post.pendidikan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
         }
 
-        function deletePendidikan() {
+        function deletePendidikan(id) {
+            for (var i = 0; i < post.pendidikan_data.length; i++) {
+
+                if (Object.values(post.pendidikan_data[i]).indexOf(id) !== -1) {
+                    console.log('data ditemukan')
+                    post.pendidikan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
+        }
+
+        function editRiwayatPelatihan(id) {
+            for (var i = 0; i < post.riwayatpelatihan_data.length; i++) {
+
+                if (Object.values(post.riwayatpelatihan_data[i]).indexOf(id) !== -1) {
+                    post.riwayatpelatihan_form.namakursusseminar = post.riwayatpelatihan_data[i].namakursusseminar
+                    post.riwayatpelatihan_form.sertifikat = post.riwayatpelatihan_data[i].sertifikat
+                    post.riwayatpelatihan_form.tahun = post.riwayatpelatihan_data[i].tahun
+                    console.log('data ditemukan')
+                    post.riwayatpelatihan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
+        }
+
+        function deleteRiwayatPelatihan(id) {
+            for (var i = 0; i < post.riwayatpelatihan_data.length; i++) {
+
+                if (Object.values(post.riwayatpelatihan_data[i]).indexOf(id) !== -1) {
+                    console.log('data ditemukan')
+                    post.riwayatpelatihan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
+        }
+
+        function editRiwayatPekerjaan(id) {
+            for (var i = 0; i < post.riwayatpekerjaan_data.length; i++) {
+
+                if (Object.values(post.riwayatpekerjaan_data[i]).indexOf(id) !== -1) {
+                    post.riwayatpekerjaan_form.namaperusahaan = post.riwayatpekerjaan_data[i].namaperusahaan
+                    post.riwayatpekerjaan_form.posisiterakhir = post.riwayatpekerjaan_data[i].posisiterakhir
+                    post.riwayatpekerjaan_form.pendapatanterakhir = post.riwayatpekerjaan_data[i].pendapatanterakhir
+                    post.riwayatpekerjaan_form.tahun = post.riwayatpekerjaan_data[i].tahun
+                    console.log('data ditemukan')
+                    post.riwayatpekerjaan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
+        }
+
+        function deleteRiwayatPekerjaan(id) {
+            for (var i = 0; i < post.riwayatpekerjaan_data.length; i++) {
+
+                if (Object.values(post.riwayatpekerjaan_data[i]).indexOf(id) !== -1) {
+                    console.log('data ditemukan')
+                    post.riwayatpekerjaan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
+        }
+
+        function resetStorePost() {
             console.log('test')
-            post.pendidikan_data = {}
+            post.storePost = {}
         }
-
-        function editRiwayatPelatihan() {
-            console.log(post.riwayatpelatihan_data);
-            post.riwayatpelatihan_data.editRiwayatPelatihan(post.riwayatpelatihan);
-        }
-
-        function deleteRiwayatPelatihan() {
-            console.log(post.riwayatapelatihan_data);
-            post.riwayatpelatihan_data = {}
-        }
-
-        function editRiwayatPekerjaan() {
-            console.log(post.riwayatpekerjaan_data);
-            post.riwayatpekerjaan_data.editRiwayatPekerjaan(post.riwayatpekerjaan_data);
-        }
-
-        function deleteRiwayatPekerjaan() {
-            console.log('post.riwayatpekerjaan_data');
-            post.riwayatpekerjaan_data = {}
-        }
-
 
         //function storePost
         function storePost() {
@@ -437,7 +499,10 @@ export default {
                 cellphone: cellphone,
                 email: email,
                 appliedposition: appliedposition,
-                expectedsalary: expectedsalary
+                expectedsalary: expectedsalary,
+                pendidikan: pendidikan_data[i],
+                riwayatpelatihan: riwayatpelatihan_data[i],
+                riwayatpekerjaan: riwayatpekerjaan_data[i],
             })
 
         }
@@ -457,6 +522,7 @@ export default {
             deleteRiwayatPelatihan,
             editRiwayatPekerjaan,
             deleteRiwayatPekerjaan,
+            resetStorePost,
         }
 
     },

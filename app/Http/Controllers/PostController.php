@@ -67,6 +67,9 @@ class PostController extends Controller
             'email'     => $request->email,
             'appliedposition'   => $request->appliedposition,
             'expectedsalary'   => $request->expectedsalary,
+            'pendidikan'   => $request->pendidikan_data,
+            'riwayatpelatihan'   => $request->riwayatpelatihan_data,
+            'riwayatpekerjaan'   => $request->riwayatpekerjaan_data,
         ]);
 
         if($post) {
@@ -120,6 +123,9 @@ class PostController extends Controller
             'email'     => $request->email,
             'appliedposition'   => $request->appliedposition,
             'expectedsalary'   => $request->expectedsalary,
+            'pendidikan'   => $request->pendidikan_data,
+            'riwayatpelatihan'   => $request->riwayatpelatihan_data,
+            'riwayatpekerjaan'   => $request->riwayatpekerjaan_data,
         ]);
 
         if($post) {
