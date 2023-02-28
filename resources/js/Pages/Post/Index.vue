@@ -92,6 +92,7 @@
                             <th scope="col">Nama Kursus / Seminar</th>
                             <th scope="col">Sertifikat</th>
                             <th scope="col">Tahun</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>

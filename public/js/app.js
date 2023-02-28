@@ -21638,7 +21638,9 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   scope: "col"
 }, "Sertifikat"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
-}, "Tahun")])], -1 /* HOISTED */);
+}, "Tahun"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col"
+}, "Action")])], -1 /* HOISTED */);
 var _hoisted_26 = {
   "class": "text-center"
 };
