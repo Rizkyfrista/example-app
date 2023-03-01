@@ -20235,6 +20235,9 @@ __webpack_require__.r(__webpack_exports__);
       var email = post.email;
       var appliedposition = post.appliedposition;
       var expectedsalary = post.expectedsalary;
+      var pendidikan = post.pendidikan_data;
+      var riwayatpelatihan = post.riwayatpelatihan_data;
+      var riwayatpekerjaan = post.riwayatpekerjaan_data;
 
       //send data
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/posts/', {
@@ -20246,45 +20249,55 @@ __webpack_require__.r(__webpack_exports__);
         cellphone: cellphone,
         email: email,
         appliedposition: appliedposition,
-        expectedsalary: expectedsalary
+        expectedsalary: expectedsalary,
+        pendidikan: pendidikan,
+        riwayatpelatihan: riwayatpelatihan,
+        riwayatpekerjaan: riwayatpekerjaan
       });
     }
-    function storePendidikanPost() {
-      var jenjangpendidikanterakhir = post.jenjangpendidikanterakhir;
-      var namaintitusiakademik = post.namaintitusiakademik;
-      var jurusan = post.jurusan;
-      var tahunlulus = post.tahunlulus;
-      var ipk = post.ipk;
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/pendidikan/', {
-        jenjangpendidikanterakhir: jenjangpendidikanterakhir,
-        namaintitusiakademik: namaintitusiakademik,
-        jurusan: jurusan,
-        tahunlulus: tahunlulus,
-        ipk: ipk
-      });
-    }
-    function storeRiwayatPelatihanPost() {
-      var namakursusseminar = post.namakursusseminar;
-      var sertifikat = post.sertifikat;
-      var tahun = post.tahun;
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/riwayat_pelatihans/', {
-        namakursusseminar: namakursusseminar,
-        sertifikat: sertifikat,
-        tahun: tahun
-      });
-    }
-    function storeRiwayatPekerjaanPost() {
-      var namaperusahaan = post.namaperusahaan;
-      var posisiterakhir = post.posisiterakhir;
-      var pendapatanterakhir = post.pendapatanterakhir;
-      var tahun = post.tahun;
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/riwayat_pekerjaans/', {
-        namaperusahaan: namaperusahaan,
-        posisiterakhir: posisiterakhir,
-        pendapatanterakhir: pendapatanterakhir,
-        tahun: tahun
-      });
-    }
+
+    // function storePendidikanPost() {
+    //     let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
+    //     let namaintitusiakademik = post.namaintitusiakademik
+    //     let jurusan = post.jurusan
+    //     let tahunlulus = post.tahunlulus
+    //     let ipk = post.ipk
+
+    //     Inertia.post('/pendidikan/', {
+    //         jenjangpendidikanterakhir: jenjangpendidikanterakhir,
+    //         namaintitusiakademik: namaintitusiakademik,
+    //         jurusan: jurusan,
+    //         tahunlulus: tahunlulus,
+    //         ipk: ipk,
+    //     })
+    // }
+
+    // function storeRiwayatPelatihanPost() {
+    //     let namakursusseminar = post.namakursusseminar
+    //     let sertifikat = post.sertifikat
+    //     let tahun = post.tahun
+
+    //     Inertia.post('/riwayat_pelatihans/', {
+    //         namakursusseminar: namakursusseminar,
+    //         sertifikat: sertifikat,
+    //         tahun: tahun,
+    //     })
+    // }
+
+    // function storeRiwayatPekerjaanPost() {
+    //     let namaperusahaan = post.namaperusahaan
+    //     let posisiterakhir = post.posisiterakhir
+    //     let pendapatanterakhir = post.pendapatanterakhir
+    //     let tahun = post.tahun
+
+    //     Inertia.post('/riwayat_pekerjaans/', {
+    //         namaperusahaan: namaperusahaan,
+    //         posisiterakhir: posisiterakhir,
+    //         pendapatanterakhir: pendapatanterakhir,
+    //         tahun: tahun,
+    //     })
+    // }
+
     return {
       post: post,
       storePost: storePost,
@@ -20300,10 +20313,7 @@ __webpack_require__.r(__webpack_exports__);
       deleteRiwayatPelatihan: deleteRiwayatPelatihan,
       editRiwayatPekerjaan: editRiwayatPekerjaan,
       deleteRiwayatPekerjaan: deleteRiwayatPekerjaan,
-      resetStorePost: resetStorePost,
-      storePendidikanPost: storePendidikanPost,
-      storeRiwayatPelatihanPost: storeRiwayatPelatihanPost,
-      storeRiwayatPekerjaanPost: storeRiwayatPekerjaanPost
+      resetStorePost: resetStorePost
     };
   },
   methods: {}
@@ -21167,14 +21177,9 @@ var _hoisted_100 = ["onClick"];
 var _hoisted_101 = {
   "class": "mb-3"
 };
-var _hoisted_102 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "submit",
-  "class": "btn btn-primary btn-md shadow-sm me-2"
-}, "SIMPAN", -1 /* HOISTED */);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" HEADER "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[28] || (_cache[28] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[29] || (_cache[29] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.storePost && $setup.storePost.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -21372,9 +21377,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $setup.deleteRiwayatPekerjaan("".concat(riwayatpekerjaan.namaperusahaan));
       }, ["prevent"])
     }, "Delete", 8 /* PROPS */, _hoisted_100)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_101, [_hoisted_102, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "btn btn-warning btn-md shadow-sm",
+  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_101, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "submit",
+    "class": "btn btn-primary btn-md shadow-sm me-2",
     onClick: _cache[27] || (_cache[27] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $setup.storePost && $setup.storePost.apply($setup, arguments);
+    }, ["prevent"]))
+  }, "SIMPAN"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-warning btn-md shadow-sm",
+    onClick: _cache[28] || (_cache[28] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.resetStorePost && $setup.resetStorePost.apply($setup, arguments);
     }, ["prevent"]))
   }, "RESET")])], 32 /* HYDRATE_EVENTS */)])])]);
@@ -21650,12 +21661,10 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   scope: "col"
 }, "Tahun Lulus"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
-}, "IPK"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
-}, "Action")])], -1 /* HOISTED */);
-var _hoisted_18 = {
+}, "IPK")])], -1 /* HOISTED */);
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "text-center"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link :href=\"`/pendidikan/${post.id}/edit`\" class=\"btn btn-sm btn-primary me-2\">EDIT</Link>\n                                <button @click.prevent=\"deletePost(`${post.id}`)\"\n                                    class=\"btn btn-sm btn-danger\">DELETE</button> ")], -1 /* HOISTED */);
 var _hoisted_19 = {
   "class": "card border-0 rounded shadow-sm"
 };
@@ -21673,12 +21682,10 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   scope: "col"
 }, "Sertifikat"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
-}, "Tahun"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-  scope: "col"
-}, "Action")])], -1 /* HOISTED */);
-var _hoisted_25 = {
+}, "Tahun")])], -1 /* HOISTED */);
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "text-center"
-};
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link :href=\"`/riwayat_pelatihans/${post.id}/edit`\" class=\"btn btn-sm btn-primary me-2\">EDIT\n                                </Link>\n                                <button @click.prevent=\"deletePost(`${post.id}`)\"\n                                    class=\"btn btn-sm btn-danger\">DELETE</button> ")], -1 /* HOISTED */);
 var _hoisted_26 = {
   "class": "card border-0 rounded shadow-sm"
 };
@@ -21699,10 +21706,10 @@ var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Pendapatan Terakhir"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
 }, "Tahun")])], -1 /* HOISTED */);
-var _hoisted_32 = {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "text-center"
-};
-var _hoisted_33 = ["onClick"];
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link :href=\"`/riwayat_pekerjaans/${post.id}/edit`\" class=\"btn btn-sm btn-primary me-2\">EDIT\n                                </Link>\n                                <button @click.prevent=\"deletePost(`${post.id}`)\"\n                                    class=\"btn btn-sm btn-danger\">DELETE</button> ")], -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" flash message "), _ctx.$page.props.flash.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.flash.message), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" flash message "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -21730,57 +21737,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, ["prevent"]),
       "class": "btn btn-sm btn-danger"
     }, "DELETE", 8 /* PROPS */, _hoisted_11)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.pendidikan, function (pendidikan) {
+  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.pendidikan, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: _ctx.post.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jenjangpendidikanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.namaintitusiakademik), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jurusan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.tahunlulus), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.ipk), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-      href: "/pendidikan/".concat(_ctx.post.id, "/edit"),
-      "class": "btn btn-sm btn-primary me-2"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("EDIT")];
-      }),
-      _: 1 /* STABLE */
-    }, 8 /* PROPS */, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $setup.deletePost("".concat(_ctx.post.id));
-      }, ["prevent"])),
-      "class": "btn btn-sm btn-danger"
-    }, "DELETE")])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.riwayat_pelatihans, function (riwayat_pelatihans) {
+      key: post.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.jenjangpendidikanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.namaintitusiakademik), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.jurusan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.tahunlulus), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.ipk), 1 /* TEXT */), _hoisted_18]);
+  }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.riwayat_pelatihans, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: _ctx.post.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.post.namakursusseminar), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.post.sertifikat), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.post.tahun), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-      href: "/riwayat_pelatihans/".concat(_ctx.post.id, "/edit"),
-      "class": "btn btn-sm btn-primary me-2"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("EDIT ")];
-      }),
-      _: 1 /* STABLE */
-    }, 8 /* PROPS */, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $setup.deletePost("".concat(_ctx.post.id));
-      }, ["prevent"])),
-      "class": "btn btn-sm btn-danger"
-    }, "DELETE")])]);
+      key: post.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.namakursusseminar), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.sertifikat), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.tahun), 1 /* TEXT */), _hoisted_25]);
   }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.riwayat_pekerjaans, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: post.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.namaperusahaan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.posisiterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.pendapatanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.tahun), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-      href: "/riwayat_pekerjaans/".concat(post.id, "/edit"),
-      "class": "btn btn-sm btn-primary me-2"
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("EDIT ")];
-      }),
-      _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $setup.deletePost("".concat(post.id));
-      }, ["prevent"]),
-      "class": "btn btn-sm btn-danger"
-    }, "DELETE", 8 /* PROPS */, _hoisted_33)])]);
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.namaperusahaan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.posisiterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.pendapatanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.tahun), 1 /* TEXT */), _hoisted_32]);
   }), 128 /* KEYED_FRAGMENT */))])])])])]);
 }
 

@@ -61,20 +61,19 @@
                             <th scope="col">Jurusan</th>
                             <th scope="col">Tahun Lulus</th>
                             <th scope="col">IPK</th>
-                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="pendidikan in pendidikan" :key="post.id">
-                            <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
-                            <td>{{ pendidikan.namaintitusiakademik }}</td>
-                            <td>{{ pendidikan.jurusan }}</td>
-                            <td>{{ pendidikan.tahunlulus }}</td>
-                            <td>{{ pendidikan.ipk }}</td>
+                        <tr v-for="post in pendidikan" :key="post.id">
+                            <td>{{ post.jenjangpendidikanterakhir }}</td>
+                            <td>{{ post.namaintitusiakademik }}</td>
+                            <td>{{ post.jurusan }}</td>
+                            <td>{{ post.tahunlulus }}</td>
+                            <td>{{ post.ipk }}</td>
                             <td class="text-center">
-                                <Link :href="`/pendidikan/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
+                                <!-- <Link :href="`/pendidikan/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
                                 <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button>
+                                    class="btn btn-sm btn-danger">DELETE</button> -->
                             </td>
                         </tr>
                     </tbody>
@@ -92,19 +91,18 @@
                             <th scope="col">Nama Kursus / Seminar</th>
                             <th scope="col">Sertifikat</th>
                             <th scope="col">Tahun</th>
-                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="riwayat_pelatihans in riwayat_pelatihans" :key="post.id">
+                        <tr v-for="post in riwayat_pelatihans" :key="post.id">
                             <td>{{ post.namakursusseminar }}</td>
                             <td>{{ post.sertifikat }}</td>
                             <td>{{ post.tahun }}</td>
                             <td class="text-center">
-                                <Link :href="`/riwayat_pelatihans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
+                                <!-- <Link :href="`/riwayat_pelatihans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
                                 </Link>
                                 <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button>
+                                    class="btn btn-sm btn-danger">DELETE</button> -->
                             </td>
                         </tr>
                     </tbody>
@@ -132,10 +130,10 @@
                             <td>{{ post.pendapatanterakhir }}</td>
                             <td>{{ post.tahun }}</td>
                             <td class="text-center">
-                                <Link :href="`/riwayat_pekerjaans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
+                                <!-- <Link :href="`/riwayat_pekerjaans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
                                 </Link>
                                 <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button>
+                                    class="btn btn-sm btn-danger">DELETE</button> -->
                             </td>
                         </tr>
                     </tbody>

@@ -296,7 +296,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">SIMPAN</button>
+                        <button type="submit" class="btn btn-primary btn-md shadow-sm me-2"
+                            v-on:click.prevent="storePost">SIMPAN</button>
                         <button class="btn btn-warning btn-md shadow-sm" v-on:click.prevent="resetStorePost">RESET</button>
                     </div>
                 </form>
@@ -487,6 +488,9 @@ export default {
             let email = post.email
             let appliedposition = post.appliedposition
             let expectedsalary = post.expectedsalary
+            let pendidikan = post.pendidikan_data
+            let riwayatpelatihan = post.riwayatpelatihan_data
+            let riwayatpekerjaan = post.riwayatpekerjaan_data
 
             //send data
             Inertia.post('/posts/', {
@@ -499,50 +503,53 @@ export default {
                 email: email,
                 appliedposition: appliedposition,
                 expectedsalary: expectedsalary,
+                pendidikan: pendidikan,
+                riwayatpelatihan: riwayatpelatihan,
+                riwayatpekerjaan: riwayatpekerjaan,
             })
         }
 
-        function storePendidikanPost() {
-            let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
-            let namaintitusiakademik = post.namaintitusiakademik
-            let jurusan = post.jurusan
-            let tahunlulus = post.tahunlulus
-            let ipk = post.ipk
+        // function storePendidikanPost() {
+        //     let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
+        //     let namaintitusiakademik = post.namaintitusiakademik
+        //     let jurusan = post.jurusan
+        //     let tahunlulus = post.tahunlulus
+        //     let ipk = post.ipk
 
-            Inertia.post('/pendidikan/', {
-                jenjangpendidikanterakhir: jenjangpendidikanterakhir,
-                namaintitusiakademik: namaintitusiakademik,
-                jurusan: jurusan,
-                tahunlulus: tahunlulus,
-                ipk: ipk,
-            })
-        }
+        //     Inertia.post('/pendidikan/', {
+        //         jenjangpendidikanterakhir: jenjangpendidikanterakhir,
+        //         namaintitusiakademik: namaintitusiakademik,
+        //         jurusan: jurusan,
+        //         tahunlulus: tahunlulus,
+        //         ipk: ipk,
+        //     })
+        // }
 
-        function storeRiwayatPelatihanPost() {
-            let namakursusseminar = post.namakursusseminar
-            let sertifikat = post.sertifikat
-            let tahun = post.tahun
+        // function storeRiwayatPelatihanPost() {
+        //     let namakursusseminar = post.namakursusseminar
+        //     let sertifikat = post.sertifikat
+        //     let tahun = post.tahun
 
-            Inertia.post('/riwayat_pelatihans/', {
-                namakursusseminar: namakursusseminar,
-                sertifikat: sertifikat,
-                tahun: tahun,
-            })
-        }
+        //     Inertia.post('/riwayat_pelatihans/', {
+        //         namakursusseminar: namakursusseminar,
+        //         sertifikat: sertifikat,
+        //         tahun: tahun,
+        //     })
+        // }
 
-        function storeRiwayatPekerjaanPost() {
-            let namaperusahaan = post.namaperusahaan
-            let posisiterakhir = post.posisiterakhir
-            let pendapatanterakhir = post.pendapatanterakhir
-            let tahun = post.tahun
+        // function storeRiwayatPekerjaanPost() {
+        //     let namaperusahaan = post.namaperusahaan
+        //     let posisiterakhir = post.posisiterakhir
+        //     let pendapatanterakhir = post.pendapatanterakhir
+        //     let tahun = post.tahun
 
-            Inertia.post('/riwayat_pekerjaans/', {
-                namaperusahaan: namaperusahaan,
-                posisiterakhir: posisiterakhir,
-                pendapatanterakhir: pendapatanterakhir,
-                tahun: tahun,
-            })
-        }
+        //     Inertia.post('/riwayat_pekerjaans/', {
+        //         namaperusahaan: namaperusahaan,
+        //         posisiterakhir: posisiterakhir,
+        //         pendapatanterakhir: pendapatanterakhir,
+        //         tahun: tahun,
+        //     })
+        // }
 
         return {
             post,
@@ -560,9 +567,6 @@ export default {
             editRiwayatPekerjaan,
             deleteRiwayatPekerjaan,
             resetStorePost,
-            storePendidikanPost,
-            storeRiwayatPelatihanPost,
-            storeRiwayatPekerjaanPost,
         }
 
     },
