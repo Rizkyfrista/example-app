@@ -471,7 +471,7 @@ export default {
 
         function resetStorePost() {
             console.log('test')
-            post.firstname
+            post.post = {}
         }
 
         //function storePost
@@ -488,7 +488,6 @@ export default {
             let appliedposition = post.appliedposition
             let expectedsalary = post.expectedsalary
 
-
             //send data
             Inertia.post('/posts/', {
                 firstname: firstname,
@@ -500,11 +499,49 @@ export default {
                 email: email,
                 appliedposition: appliedposition,
                 expectedsalary: expectedsalary,
-                pendidikan: pendidikan_data[i],
-                riwayatpelatihan: riwayatpelatihan_data[i],
-                riwayatpekerjaan: riwayatpekerjaan_data[i],
             })
+        }
 
+        function storePendidikanPost() {
+            let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
+            let namaintitusiakademik = post.namaintitusiakademik
+            let jurusan = post.jurusan
+            let tahunlulus = post.tahunlulus
+            let ipk = post.ipk
+
+            Inertia.post('/pendidikan/', {
+                jenjangpendidikanterakhir: jenjangpendidikanterakhir,
+                namaintitusiakademik: namaintitusiakademik,
+                jurusan: jurusan,
+                tahunlulus: tahunlulus,
+                ipk: ipk,
+            })
+        }
+
+        function storeRiwayatPelatihanPost() {
+            let namakursusseminar = post.namakursusseminar
+            let sertifikat = post.sertifikat
+            let tahun = post.tahun
+
+            Inertia.post('/riwayat_pelatihans/', {
+                namakursusseminar: namakursusseminar,
+                sertifikat: sertifikat,
+                tahun: tahun,
+            })
+        }
+
+        function storeRiwayatPekerjaanPost() {
+            let namaperusahaan = post.namaperusahaan
+            let posisiterakhir = post.posisiterakhir
+            let pendapatanterakhir = post.pendapatanterakhir
+            let tahun = post.tahun
+
+            Inertia.post('/riwayat_pekerjaans/', {
+                namaperusahaan: namaperusahaan,
+                posisiterakhir: posisiterakhir,
+                pendapatanterakhir: pendapatanterakhir,
+                tahun: tahun,
+            })
         }
 
         return {
@@ -523,6 +560,9 @@ export default {
             editRiwayatPekerjaan,
             deleteRiwayatPekerjaan,
             resetStorePost,
+            storePendidikanPost,
+            storeRiwayatPelatihanPost,
+            storeRiwayatPekerjaanPost,
         }
 
     },

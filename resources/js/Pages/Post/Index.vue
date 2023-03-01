@@ -65,12 +65,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="post in pendidikan" :key="post.id">
-                            <td>{{ post.jenjangpendidikanterakhir }}</td>
-                            <td>{{ post.namaintitusiakademik }}</td>
-                            <td>{{ post.jurusan }}</td>
-                            <td>{{ post.tahunlulus }}</td>
-                            <td>{{ post.ipk }}</td>
+                        <tr v-for="pendidikan in pendidikan" :key="post.id">
+                            <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
+                            <td>{{ pendidikan.namaintitusiakademik }}</td>
+                            <td>{{ pendidikan.jurusan }}</td>
+                            <td>{{ pendidikan.tahunlulus }}</td>
+                            <td>{{ pendidikan.ipk }}</td>
                             <td class="text-center">
                                 <Link :href="`/pendidikan/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
                                 <button @click.prevent="deletePost(`${post.id}`)"
@@ -96,7 +96,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="post in riwayat_pelatihans" :key="post.id">
+                        <tr v-for="riwayat_pelatihans in riwayat_pelatihans" :key="post.id">
                             <td>{{ post.namakursusseminar }}</td>
                             <td>{{ post.sertifikat }}</td>
                             <td>{{ post.tahun }}</td>
