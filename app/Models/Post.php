@@ -17,4 +17,19 @@ class Post extends Model
     protected $fillable = [
         'firstname', 'lastname', 'address', 'city_state_zip', 'homephone', 'cellphone', 'email', 'appliedposition', 'expectedsalary'
     ];
+
+    public function pendidikann()
+    {
+        return $this->hasMany(Pendidikan::class, 'post_id');
+    }
+
+    public function pekerjaann()
+    {
+        return $this->hasMany(RiwayatPekerjaan::class, 'post_id');
+    }
+
+    public function pelatihann()
+    {
+        return $this->hasMany(RiwayatPelatihan::class, 'post_id');
+    }
 }

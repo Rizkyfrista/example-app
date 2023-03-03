@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Pendidikan;
+use App\Models\RiwayatPekerjaan;
+use App\Models\RiwayatPelatihan;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -43,18 +46,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         //set validation
-        $request->validate([
-            'firstname'   => 'required',
-            'lastname'   => 'required',
-            'address'   => 'required',
-            'city_state_zip'   => 'required',
-            'homephone'   => 'required',
-            'cellphone'   => 'required',
-            'email'   => 'required',
-            'appliedposition'   => 'required',
-            'expectedsalary'   => 'required',
-        ]);
+        // $request->validate([
+        //     'firstname'   => 'required',
+        //     'lastname'   => 'required',
+        //     'address'   => 'required',
+        //     'city_state_zip'   => 'required',
+        //     'homephone'   => 'required',
+        //     'cellphone'   => 'required',
+        //     'email'   => 'required',
+        //     'appliedposition'   => 'required',
+        //     'expectedsalary'   => 'required',
+        // ]);
 
         //create post
         $post = Post::create([
@@ -67,14 +71,50 @@ class PostController extends Controller
             'email'     => $request->email,
             'appliedposition'   => $request->appliedposition,
             'expectedsalary'   => $request->expectedsalary,
-            'pendidikan'   => $request->pendidikan_data,
-            'riwayatpelatihan'   => $request->riwayatpelatihan_data,
-            'riwayatpekerjaan'   => $request->riwayatpekerjaan_data,
         ]);
 
-        if($post) {
+        if ($post) {
+            $pendidikann = $request->pendidikan;
+            $pelatihann = $request->riwayatpelatihan;
+            $pekerjaann = $request->riwayatpekerjaan;
+
+            if (count($pendidikann) > 0) {
+                foreach ($pendidikann as $pendidikan) {
+                    $pendidikan['post_id'] = $post->id;
+                    Pendidikan::create($pendidikan);
+                }
+            }
+
+            if (count($pelatihann) > 0) {
+                foreach ($pelatihann as $pel) {
+                    $pel['post_id'] = $post->id;
+                    RiwayatPelatihan::create($pel);
+                }
+            }
+            if (count($pekerjaann) > 0) {
+                foreach ($pekerjaann as $pek) {
+                    $pek['post_id'] = $post->id;
+                    RiwayatPekerjaan::create($pek);
+                }
+            }
             return Redirect::route('posts.index')->with('message', 'Data Berhasil Disimpan!');
         }
+    }
+
+    public function show(Post $post)
+    {
+        //render with data "posts"
+        return Inertia::render('Post/Detail', [
+            'pendidikann' => $post->pendidikann,
+            'pelatihann' => $post->pelatihann,
+            'pekerjaann' => $post->pekerjaann,
+        ]);
+
+        return Inertia::render('Post/Edit', [
+            'pendidikann' => $post->pendidikann,
+            'pelatihann' => $post->pelatihann,
+            'pekerjaann' => $post->pekerjaann,
+        ]);
     }
 
     /**
@@ -128,7 +168,7 @@ class PostController extends Controller
             'riwayatpekerjaan'   => $request->riwayatpekerjaan_data,
         ]);
 
-        if($post) {
+        if ($post) {
             return Redirect::route('posts.index')->with('message', 'Data Berhasil Diupdate!');
         }
     }
@@ -147,9 +187,8 @@ class PostController extends Controller
         //delete post
         $post->delete();
 
-        if($post) {
+        if ($post) {
             return Redirect::route('posts.index')->with('message', 'Data Berhasil Dihapus!');
         }
-
     }
 }

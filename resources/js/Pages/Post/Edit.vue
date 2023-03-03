@@ -72,6 +72,229 @@
                         </div>
                     </div>
 
+                    <!-- PENDIDIKAN -->
+                    <form @submit.prevent="storePendidikan">
+                        <div class="mb-3">
+                            <h4>Pendidikan</h4>
+                            <hr>
+                            <label class="form-label">Jenjang Pendidikan Terakhir</label>
+                            <input type="text" class="form-control"
+                                v-model="post.pendidikan_form.jenjangpendidikanterakhir">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nama Intitusi Akademik</label>
+                            <input type="text" class="form-control" v-model="post.pendidikan_form.namaintitusiakademik">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jurusan</label>
+                            <input type="text" class="form-control" v-model="post.pendidikan_form.jurusan">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tahun Lulus</label>
+                            <input type="text" class="form-control" v-model="post.pendidikan_form.tahunlulus">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">IPK</label>
+                            <input type="text" class="form-control" v-model="post.pendidikan_form.ipk">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
+                                PENDIDIKAN</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetPendidikan">RESET</button>
+                        </div>
+                    </form>
+
+                    <div class="card border-0 rounded shadow-sm">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Jenjang Pendidikan Terakhir</th>
+                                        <th scope="col">Nama Intitusi Akademik</th>
+                                        <th scope="col">Jurusan</th>
+                                        <th scope="col">Tahun Lulus</th>
+                                        <th scope="col">IPK</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="pendidikan in post.pendidikan_data"
+                                        :key="pendidikan.jenjangpendidikanterakhir">
+                                        <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
+                                        <td>{{ pendidikan.namaintitusiakademik }}</td>
+                                        <td>{{ pendidikan.jurusan }}</td>
+                                        <td>{{ pendidikan.tahunlulus }}</td>
+                                        <td>{{ pendidikan.ipk }}</td>
+                                        <td class="text-center">
+                                            <!-- <Link :href="`/pendidikan/${pendidikan.id}/edit`"
+                                                class="btn btn-sm btn-primary me-2">
+                                            EDIT</Link>
+                                            <button @click.prevent="deletePost(`${post.id}`)"
+                                                class="btn btn-sm btn-danger">DELETE</button> -->
+
+
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editPendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deletePendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RIWAYAT PELATIHAN -->
+                    <form @submit.prevent="storeRiwayatPelatihan">
+                        <div class="mb-3">
+                            <h4>Riwayat Pelatihan</h4>
+                            <hr>
+                            <label class="form-label">Nama Kursus / Seminar</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpelatihan_form.namakursusseminar">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Sertifikat (ada/tidak)</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpelatihan_form.sertifikat">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tahun</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpelatihan_form.tahun">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
+                                RIWAYAT PELATIHAN</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetRiwayatPelatihan">RESET</button>
+                        </div>
+                    </form>
+
+                    <div class="card border-0 rounded shadow-sm">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Kursus / Seminar</th>
+                                        <th scope="col">Sertifikat (ada/tidak)</th>
+                                        <th scope="col">Tahun</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data"
+                                        :key="riwayatpelatihan.namakursusseminar">
+                                        <td>{{ riwayatpelatihan.namakursusseminar }}</td>
+                                        <td>{{ riwayatpelatihan.sertifikat }}</td>
+                                        <td>{{ riwayatpelatihan.tahun }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deleteRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RIWAYAT PEKERJAAN -->
+                    <form @submit.prevent="storeRiwayatPekerjaan">
+                        <div class="mb-3">
+                            <h4>Riwayat Pekerjaan</h4>
+                            <hr>
+                            <label class="form-label">Nama Perusahaan</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpekerjaan_form.namaperusahaan">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Posisi Terakhir</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpekerjaan_form.posisiterakhir">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pendapatan Terakhir</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpekerjaan_form.pendapatanterakhir">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tahun</label>
+                            <input type="text" class="form-control" v-model="post.riwayatpekerjaan_form.tahun">
+                            <div v-if="errors.title" class="mt-2 alert alert-danger">
+                                {{ errors.title }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">TAMBAH DATA
+                                RIWAYAT PEKERJAAN</button>
+                            <button class="btn btn-warning btn-md shadow-sm"
+                                v-on:click.prevent="resetRiwayatPekerjaan">RESET</button>
+                        </div>
+                    </form>
+
+                    <div class="card border-0 rounded shadow-sm">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Perusahaan</th>
+                                        <th scope="col">Posisi Terakhir</th>
+                                        <th scope="col">Pendapatan Terakhir</th>
+                                        <th scope="col">Tahun</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="riwayatpekerjaan in post.riwayatpekerjaan_data"
+                                        :key="riwayatpekerjaan.namaperusahaan">
+                                        <td>{{ riwayatpekerjaan.namaperusahaan }}</td>
+                                        <td>{{ riwayatpekerjaan.posisiterakhir }}</td>
+                                        <td>{{ riwayatpekerjaan.pendapatanterakhir }}</td>
+                                        <td>{{ riwayatpekerjaan.tahun }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-primary me-2"
+                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Edit</button>
+                                            <button class="btn btn-sm btn-danger"
+                                                v-on:click.prevent="deleteRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">UPDATE</button>
@@ -115,6 +338,14 @@ export default {
             email: props.post.email,
             appliedposition: props.post.appliedposition,
             expectedsalary: props.post.expectedsalary,
+            pendidikan_form: {},
+            pendidikan_data: [],
+            riwayatpelatihan_form: {},
+            riwayatpelatihan_data: [],
+            riwayatpekerjaan_form: {},
+            riwayatpekerjaan_data: [],
+
+
         })
 
         //function updatePost
@@ -130,6 +361,9 @@ export default {
             let email = post.email
             let appliedposition = post.appliedposition
             let expectedsalary = post.expectedsalary
+            let pendidikan = post.pendidikan_data
+            let riwayatpelatihan = post.riwayatpelatihan_data
+            let riwayatpekerjaan = post.riwayatpekerjaan_data
 
             //send data
             Inertia.put(`/posts/${props.post.id}`, {
@@ -141,7 +375,10 @@ export default {
                 cellphone: cellphone,
                 email: email,
                 appliedposition: appliedposition,
-                expectedsalary: expectedsalary
+                expectedsalary: expectedsalary,
+                pendidikan: pendidikan,
+                riwayatpelatihan: riwayatpelatihan,
+                riwayatpekerjaan: riwayatpekerjaan,
             })
 
         }

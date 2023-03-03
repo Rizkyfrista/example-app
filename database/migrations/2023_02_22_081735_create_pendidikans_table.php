@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePendidikanTable extends Migration
+class CreatePendidikansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreatePendidikanTable extends Migration
      */
     public function up()
     {
-        Schema::create('pendidikan', function (Blueprint $table) {
+        Schema::create('pendidikans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("post_id");
             //$table->id('idheader');
             $table->string('jenjangpendidikanterakhir');
             $table->string('namaintitusiakademik');
@@ -22,6 +23,7 @@ class CreatePendidikanTable extends Migration
             $table->integer('tahunlulus');
             $table->integer('ipk');
             $table->timestamps();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 
@@ -32,6 +34,6 @@ class CreatePendidikanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pendidikan');
+        Schema::dropIfExists('pendidikans');
     }
 }

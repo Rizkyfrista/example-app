@@ -15,11 +15,13 @@ class CreateRiwayatPekerjaansTable extends Migration
     {
         Schema::create('riwayat_pekerjaans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("post_id");
             $table->string('namaperusahaan');
             $table->string('posisiterakhir');
             $table->string('pendapatanterakhir');
             $table->string('tahun');
             $table->timestamps();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

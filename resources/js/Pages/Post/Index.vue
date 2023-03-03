@@ -39,7 +39,9 @@
                             <td>{{ post.appliedposition }}</td>
                             <td>{{ post.expectedsalary }}</td>
                             <td class="text-center">
-                                <Link :href="`/posts/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
+                                <Link :href="`/posts/${post.id}`" class="btn btn-sm btn-primary me-2">Details</Link>
+                                <Link :href="`/posts/${post.id}/edit`" class="btn btn-warning btn-md shadow-sm 2">EDIT
+                                </Link>
                                 <button @click.prevent="deletePost(`${post.id}`)"
                                     class="btn btn-sm btn-danger">DELETE</button>
                             </td>
@@ -48,99 +50,6 @@
                 </table>
             </div>
         </div>
-
-        <div class="card border-0 rounded shadow-sm">
-            <div class="card-body">
-                <h4>Pendidikan</h4>
-                <hr>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Jenjang Pendidikan Terakhir</th>
-                            <th scope="col">Nama Intitusi Akademik</th>
-                            <th scope="col">Jurusan</th>
-                            <th scope="col">Tahun Lulus</th>
-                            <th scope="col">IPK</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="post in pendidikan" :key="post.id">
-                            <td>{{ post.jenjangpendidikanterakhir }}</td>
-                            <td>{{ post.namaintitusiakademik }}</td>
-                            <td>{{ post.jurusan }}</td>
-                            <td>{{ post.tahunlulus }}</td>
-                            <td>{{ post.ipk }}</td>
-                            <td class="text-center">
-                                <!-- <Link :href="`/pendidikan/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
-                                <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="card border-0 rounded shadow-sm">
-            <div class="card-body">
-                <h4>Riwayat Pelatihan</h4>
-                <hr>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nama Kursus / Seminar</th>
-                            <th scope="col">Sertifikat</th>
-                            <th scope="col">Tahun</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="post in riwayat_pelatihans" :key="post.id">
-                            <td>{{ post.namakursusseminar }}</td>
-                            <td>{{ post.sertifikat }}</td>
-                            <td>{{ post.tahun }}</td>
-                            <td class="text-center">
-                                <!-- <Link :href="`/riwayat_pelatihans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
-                                </Link>
-                                <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="card border-0 rounded shadow-sm">
-            <div class="card-body">
-                <h4>Riwayat Pekerjaan</h4>
-                <hr>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nama Perusahaan</th>
-                            <th scope="col">Posisi Terakhir</th>
-                            <th scope="col">Pendapatan Terakhir</th>
-                            <th scope="col">Tahun</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="post in riwayat_pekerjaans" :key="post.id">
-                            <td>{{ post.namaperusahaan }}</td>
-                            <td>{{ post.posisiterakhir }}</td>
-                            <td>{{ post.pendapatanterakhir }}</td>
-                            <td>{{ post.tahun }}</td>
-                            <td class="text-center">
-                                <!-- <Link :href="`/riwayat_pekerjaans/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
-                                </Link>
-                                <button @click.prevent="deletePost(`${post.id}`)"
-                                    class="btn btn-sm btn-danger">DELETE</button> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
     </div>
 </template>
 

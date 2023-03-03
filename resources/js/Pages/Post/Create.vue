@@ -81,7 +81,6 @@
                             <div v-if="errors.title" class="mt-2 alert alert-danger">
                                 {{ errors.title }}
                             </div>
-
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama Intitusi Akademik</label>

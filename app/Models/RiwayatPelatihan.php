@@ -15,6 +15,6 @@ class RiwayatPelatihan extends Model
      * @var array
      */
     protected $fillable = [
-        'namakursusseminar', 'sertifikat', 'tahun'
+        'post_id', 'namakursusseminar', 'sertifikat', 'tahun'
     ];
 }

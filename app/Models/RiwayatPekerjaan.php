@@ -15,6 +15,6 @@ class RiwayatPekerjaan extends Model
      * @var array
      */
     protected $fillable = [
-        'namaperusahaan', 'posisiterakhir', 'pendapatanterakhir', 'tahun'
+        'post_id', 'namaperusahaan', 'posisiterakhir', 'pendapatanterakhir', 'tahun'
     ];
 }

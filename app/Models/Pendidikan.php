@@ -15,6 +15,6 @@ class Pendidikan extends Model
      * @var array
      */
     protected $fillable = [
-        'jenjangpendidikanterakhir', 'namaintitusiakademik', 'jurusan', 'tahunlulus', 'ipk'
+        'post_id', 'jenjangpendidikanterakhir', 'namaintitusiakademik', 'jurusan', 'tahunlulus', 'ipk'
     ];
 }
