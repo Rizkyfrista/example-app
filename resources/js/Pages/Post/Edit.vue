@@ -321,7 +321,7 @@ export default {
     //props
     props: {
         post: Object,
-        errors: Object
+        errors: Object,
     },
 
     //define Composition Api
