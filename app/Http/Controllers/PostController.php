@@ -109,12 +109,6 @@ class PostController extends Controller
             'pelatihann' => $post->pelatihann,
             'pekerjaann' => $post->pekerjaann,
         ]);
-
-        return Inertia::render('Post/Edit', [
-            'pendidikann' => $post->pendidikann,
-            'pelatihann' => $post->pelatihann,
-            'pekerjaann' => $post->pekerjaann,
-        ]);
     }
 
     /**
