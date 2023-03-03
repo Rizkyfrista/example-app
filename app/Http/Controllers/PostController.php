@@ -48,17 +48,17 @@ class PostController extends Controller
     {
 
         //set validation
-        // $request->validate([
-        //     'firstname'   => 'required',
-        //     'lastname'   => 'required',
-        //     'address'   => 'required',
-        //     'city_state_zip'   => 'required',
-        //     'homephone'   => 'required',
-        //     'cellphone'   => 'required',
-        //     'email'   => 'required',
-        //     'appliedposition'   => 'required',
-        //     'expectedsalary'   => 'required',
-        // ]);
+        $request->validate([
+            'firstname'   => 'required',
+            'lastname'   => 'required',
+            'address'   => 'required',
+            'city_state_zip'   => 'required',
+            'homephone'   => 'required',
+            'cellphone'   => 'required',
+            'email'   => 'required',
+            'appliedposition'   => 'required',
+            'expectedsalary'   => 'required',
+        ]);
 
         //create post
         $post = Post::create([
@@ -120,7 +120,10 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return Inertia::render('Post/Edit', [
-            'post' => $post
+            'post' => $post,
+            'pendidikan' => $post->pendidikann,
+            'pelatihan' => $post->pelatihann,
+            'pekerjaan' => $post->pekerjaann
         ]);
     }
 
