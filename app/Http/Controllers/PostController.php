@@ -119,11 +119,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $post['pendidikann'] = $post->pendidikann;
+        $post['pelatihann'] = $post->pelatihann;
+        $post['pekerjaann'] = $post->pekerjaann;
+
         return Inertia::render('Post/Edit', [
             'post' => $post,
-            'pendidikan' => $post->pendidikann,
-            'pelatihan' => $post->pelatihann,
-            'pekerjaan' => $post->pekerjaann
         ]);
     }
 

@@ -123,7 +123,7 @@ export default {
     props: {
         pendidikann: Array, // <- nama props yang dibuat di controller saat parsing data
         pelatihann: Array,
-        pekerjaann: Array
+        pekerjaann: Array,
     },
 
     //define Composition Api

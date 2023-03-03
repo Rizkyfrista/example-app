@@ -20410,11 +20410,11 @@ __webpack_require__.r(__webpack_exports__);
       appliedposition: props.post.appliedposition,
       expectedsalary: props.post.expectedsalary,
       pendidikan_form: {},
-      pendidikan_data: [],
+      pendidikan_data: props.post.pendidikann,
       riwayatpelatihan_form: {},
-      riwayatpelatihan_data: [],
+      riwayatpelatihan_data: props.post.pelatihann,
       riwayatpekerjaan_form: {},
-      riwayatpekerjaan_data: []
+      riwayatpekerjaan_data: props.post.pekerjaann
     });
 
     //function updatePost
