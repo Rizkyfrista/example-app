@@ -508,48 +508,6 @@ export default {
             })
         }
 
-        // function storePendidikanPost() {
-        //     let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
-        //     let namaintitusiakademik = post.namaintitusiakademik
-        //     let jurusan = post.jurusan
-        //     let tahunlulus = post.tahunlulus
-        //     let ipk = post.ipk
-
-        //     Inertia.post('/pendidikan/', {
-        //         jenjangpendidikanterakhir: jenjangpendidikanterakhir,
-        //         namaintitusiakademik: namaintitusiakademik,
-        //         jurusan: jurusan,
-        //         tahunlulus: tahunlulus,
-        //         ipk: ipk,
-        //     })
-        // }
-
-        // function storeRiwayatPelatihanPost() {
-        //     let namakursusseminar = post.namakursusseminar
-        //     let sertifikat = post.sertifikat
-        //     let tahun = post.tahun
-
-        //     Inertia.post('/riwayat_pelatihans/', {
-        //         namakursusseminar: namakursusseminar,
-        //         sertifikat: sertifikat,
-        //         tahun: tahun,
-        //     })
-        // }
-
-        // function storeRiwayatPekerjaanPost() {
-        //     let namaperusahaan = post.namaperusahaan
-        //     let posisiterakhir = post.posisiterakhir
-        //     let pendapatanterakhir = post.pendapatanterakhir
-        //     let tahun = post.tahun
-
-        //     Inertia.post('/riwayat_pekerjaans/', {
-        //         namaperusahaan: namaperusahaan,
-        //         posisiterakhir: posisiterakhir,
-        //         pendapatanterakhir: pendapatanterakhir,
-        //         tahun: tahun,
-        //     })
-        // }
-
         return {
             post,
             storePost,

@@ -20255,49 +20255,6 @@ __webpack_require__.r(__webpack_exports__);
         riwayatpekerjaan: riwayatpekerjaan
       });
     }
-
-    // function storePendidikanPost() {
-    //     let jenjangpendidikanterakhir = post.jenjangpendidikanterakhir
-    //     let namaintitusiakademik = post.namaintitusiakademik
-    //     let jurusan = post.jurusan
-    //     let tahunlulus = post.tahunlulus
-    //     let ipk = post.ipk
-
-    //     Inertia.post('/pendidikan/', {
-    //         jenjangpendidikanterakhir: jenjangpendidikanterakhir,
-    //         namaintitusiakademik: namaintitusiakademik,
-    //         jurusan: jurusan,
-    //         tahunlulus: tahunlulus,
-    //         ipk: ipk,
-    //     })
-    // }
-
-    // function storeRiwayatPelatihanPost() {
-    //     let namakursusseminar = post.namakursusseminar
-    //     let sertifikat = post.sertifikat
-    //     let tahun = post.tahun
-
-    //     Inertia.post('/riwayat_pelatihans/', {
-    //         namakursusseminar: namakursusseminar,
-    //         sertifikat: sertifikat,
-    //         tahun: tahun,
-    //     })
-    // }
-
-    // function storeRiwayatPekerjaanPost() {
-    //     let namaperusahaan = post.namaperusahaan
-    //     let posisiterakhir = post.posisiterakhir
-    //     let pendapatanterakhir = post.pendapatanterakhir
-    //     let tahun = post.tahun
-
-    //     Inertia.post('/riwayat_pekerjaans/', {
-    //         namaperusahaan: namaperusahaan,
-    //         posisiterakhir: posisiterakhir,
-    //         pendapatanterakhir: pendapatanterakhir,
-    //         tahun: tahun,
-    //     })
-    // }
-
     return {
       post: post,
       storePost: storePost,
@@ -20449,9 +20406,47 @@ __webpack_require__.r(__webpack_exports__);
         riwayatpekerjaan: riwayatpekerjaan
       });
     }
+
+    //function delete
+    function pendidikanDestroy(id) {
+      var _this = this;
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"]('/posts/pendidikan/' + id, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this.post.pendidikan_data = _this.post.pendidikan_data.filter(function (data) {
+            return data.id != id;
+          });
+        }
+      });
+    }
+    function pelatihanDestroy(id) {
+      var _this2 = this;
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"]('/posts/pelatihan/' + id, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this2.post.riwayatpelatihan_data = _this2.post.riwayatpelatihan_data.filter(function (data) {
+            return data.id != id;
+          });
+        }
+      });
+    }
+    function pekerjaanDestroy(id) {
+      var _this3 = this;
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"]('/posts/pekerjaan/' + id, {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {
+          _this3.post.riwayatpekerjaan_data = _this3.post.riwayatpekerjaan_data.filter(function (data) {
+            return data.id != id;
+          });
+        }
+      });
+    }
     return {
       post: post,
-      updatePost: updatePost
+      updatePost: updatePost,
+      pendidikanDestroy: pendidikanDestroy,
+      pelatihanDestroy: pelatihanDestroy,
+      pekerjaanDestroy: pekerjaanDestroy
     };
   }
 });
@@ -22008,16 +22003,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, "RESET")])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.post.pendidikan_data, function (pendidikan) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: pendidikan.jenjangpendidikanterakhir
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jenjangpendidikanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.namaintitusiakademik), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jurusan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.tahunlulus), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.ipk), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Link :href=\"`/pendidikan/${pendidikan.id}/edit`\"\n                                                class=\"btn btn-sm btn-primary me-2\">\n                                            EDIT</Link>\n                                            <button @click.prevent=\"deletePost(`${post.id}`)\"\n                                                class=\"btn btn-sm btn-danger\">DELETE</button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      key: pendidikan.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jenjangpendidikanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.namaintitusiakademik), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.jurusan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.tahunlulus), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pendidikan.ipk), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-primary me-2",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.editPendidikan("".concat(pendidikan.jenjangpendidikanterakhir));
+        return _ctx.editPendidikan("".concat(pendidikan.id));
       }, ["prevent"])
     }, "Edit", 8 /* PROPS */, _hoisted_58), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-danger",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.deletePendidikan("".concat(pendidikan.jenjangpendidikanterakhir));
+        return $setup.pendidikanDestroy("".concat(pendidikan.id));
       }, ["prevent"])
     }, "Delete", 8 /* PROPS */, _hoisted_59)])]);
   }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RIWAYAT PELATIHAN "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -22049,16 +22044,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, "RESET")])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_75, [_hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.post.riwayatpelatihan_data, function (riwayatpelatihan) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: riwayatpelatihan.namakursusseminar
+      key: riwayatpelatihan.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpelatihan.namakursusseminar), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpelatihan.sertifikat), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpelatihan.tahun), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-primary me-2",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.editRiwayatPelatihan("".concat(riwayatpelatihan.namakursusseminar));
+        return _ctx.editRiwayatPelatihan("".concat(riwayatpelatihan.id));
       }, ["prevent"])
     }, "Edit", 8 /* PROPS */, _hoisted_78), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-danger",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.deleteRiwayatPelatihan("".concat(riwayatpelatihan.namakursusseminar));
+        return $setup.pelatihanDestroy("".concat(riwayatpelatihan.id));
       }, ["prevent"])
     }, "Delete", 8 /* PROPS */, _hoisted_79)])]);
   }), 128 /* KEYED_FRAGMENT */))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" RIWAYAT PEKERJAAN "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -22094,18 +22089,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[25] || (_cache[25] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return _ctx.resetRiwayatPekerjaan && _ctx.resetRiwayatPekerjaan.apply(_ctx, arguments);
     }, ["prevent"]))
-  }, "RESET")])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_96, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_97, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_98, [_hoisted_99, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.post.riwayatpekerjaan_data, function (riwayatpekerjaan) {
+  }, "RESET")])], 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_96, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_97, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_98, [_hoisted_99, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.post.id, function (riwayatpekerjaan) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
-      key: riwayatpekerjaan.namaperusahaan
+      key: riwayatpekerjaan.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpekerjaan.namaperusahaan), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpekerjaan.posisiterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpekerjaan.pendapatanterakhir), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(riwayatpekerjaan.tahun), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_100, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-primary me-2",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.editRiwayatPekerjaan("".concat(riwayatpekerjaan.namaperusahaan));
+        return _ctx.editRiwayatPekerjaan("".concat(riwayatpekerjaan.id));
       }, ["prevent"])
     }, "Edit", 8 /* PROPS */, _hoisted_101), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-sm btn-danger",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return _ctx.deleteRiwayatPekerjaan("".concat(riwayatpekerjaan.namaperusahaan));
+        return $setup.pekerjaanDestroy("".concat(riwayatpekerjaan.id));
       }, ["prevent"])
     }, "Delete", 8 /* PROPS */, _hoisted_102)])]);
   }), 128 /* KEYED_FRAGMENT */))])])])]), _hoisted_103], 32 /* HYDRATE_EVENTS */)])])]);

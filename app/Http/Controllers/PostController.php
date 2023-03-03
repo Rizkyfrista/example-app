@@ -189,4 +189,34 @@ class PostController extends Controller
             return Redirect::route('posts.index')->with('message', 'Data Berhasil Dihapus!');
         }
     }
+
+    public function pendidikanDestroy(Pendidikan $pendidikan)
+    {
+        try {
+            $pendidikan->delete();
+            return redirect()->back()->with('message', 'Berhasil Delete Pendidikan');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function pelatihanDestroy(RiwayatPelatihan $pelatihan)
+    {
+        try {
+            $pelatihan->delete();
+            return redirect()->back()->with('message', 'Berhasil Delete Pelatihan');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function pekerjaanDestroy(RiwayatPekerjaan $pekerjaan)
+    {
+        try {
+            $pekerjaan->delete();
+            return redirect()->back()->with('message', 'Berhasil Delete Pekerjaan');
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

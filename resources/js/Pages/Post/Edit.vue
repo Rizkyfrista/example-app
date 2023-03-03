@@ -135,25 +135,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pendidikan in post.pendidikan_data"
-                                        :key="pendidikan.jenjangpendidikanterakhir">
+                                    <tr v-for="pendidikan in post.pendidikan_data" :key="pendidikan.id">
                                         <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
                                         <td>{{ pendidikan.namaintitusiakademik }}</td>
                                         <td>{{ pendidikan.jurusan }}</td>
                                         <td>{{ pendidikan.tahunlulus }}</td>
                                         <td>{{ pendidikan.ipk }}</td>
                                         <td class="text-center">
-                                            <!-- <Link :href="`/pendidikan/${pendidikan.id}/edit`"
-                                                class="btn btn-sm btn-primary me-2">
-                                            EDIT</Link>
-                                            <button @click.prevent="deletePost(`${post.id}`)"
-                                                class="btn btn-sm btn-danger">DELETE</button> -->
-
-
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editPendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Edit</button>
+                                                v-on:click.prevent="editPendidikan(`${pendidikan.id}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deletePendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Delete</button>
+                                                v-on:click.prevent="pendidikanDestroy(`${pendidikan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -207,16 +199,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data"
-                                        :key="riwayatpelatihan.namakursusseminar">
+                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data" :key="riwayatpelatihan.id">
                                         <td>{{ riwayatpelatihan.namakursusseminar }}</td>
                                         <td>{{ riwayatpelatihan.sertifikat }}</td>
                                         <td>{{ riwayatpelatihan.tahun }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Edit</button>
+                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.id}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deleteRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Delete</button>
+                                                v-on:click.prevent="pelatihanDestroy(`${riwayatpelatihan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -278,17 +269,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpekerjaan in post.riwayatpekerjaan_data"
-                                        :key="riwayatpekerjaan.namaperusahaan">
+                                    <tr v-for="riwayatpekerjaan in post.id" :key="riwayatpekerjaan.id">
                                         <td>{{ riwayatpekerjaan.namaperusahaan }}</td>
                                         <td>{{ riwayatpekerjaan.posisiterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.pendapatanterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.tahun }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Edit</button>
+                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.id}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
-                                                v-on:click.prevent="deleteRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Delete</button>
+                                                v-on:click.prevent="pekerjaanDestroy(`${riwayatpekerjaan.id}`)">Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -381,9 +371,46 @@ export default {
 
         }
 
+        //function delete
+        function pendidikanDestroy(id) {
+            Inertia.delete('/posts/pendidikan/' + id, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.post.pendidikan_data = this.post.pendidikan_data.filter(data => {
+                        return data.id != id;
+                    })
+                }
+            })
+        }
+
+        function pelatihanDestroy(id) {
+            Inertia.delete('/posts/pelatihan/' + id, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.post.riwayatpelatihan_data = this.post.riwayatpelatihan_data.filter(data => {
+                        return data.id != id;
+                    })
+                }
+            })
+        }
+
+        function pekerjaanDestroy(id) {
+            Inertia.delete('/posts/pekerjaan/' + id, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.post.riwayatpekerjaan_data = this.post.riwayatpekerjaan_data.filter(data => {
+                        return data.id != id;
+                    })
+                }
+            })
+        }
+
         return {
             post,
-            updatePost
+            updatePost,
+            pendidikanDestroy,
+            pelatihanDestroy,
+            pekerjaanDestroy,
         }
 
     }
