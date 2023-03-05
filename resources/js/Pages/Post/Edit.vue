@@ -135,7 +135,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="pendidikan in post.pendidikan_data" :key="pendidikan.id">
+                                    <tr v-for="pendidikan in post.pendidikan_data"
+                                        :key="pendidikan.jenjangpendidikanterakhir">
                                         <td>{{ pendidikan.jenjangpendidikanterakhir }}</td>
                                         <td>{{ pendidikan.namaintitusiakademik }}</td>
                                         <td>{{ pendidikan.jurusan }}</td>
@@ -143,7 +144,7 @@
                                         <td>{{ pendidikan.ipk }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editPendidikan(`${pendidikan.id}`)">Edit</button>
+                                                v-on:click.prevent="editPendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
                                                 v-on:click.prevent="pendidikanDestroy(`${pendidikan.id}`)">Delete</button>
                                         </td>
@@ -199,13 +200,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data" :key="riwayatpelatihan.id">
+                                    <tr v-for="riwayatpelatihan in post.riwayatpelatihan_data"
+                                        :key="riwayatpelatihan.namakursusseminar">
                                         <td>{{ riwayatpelatihan.namakursusseminar }}</td>
                                         <td>{{ riwayatpelatihan.sertifikat }}</td>
                                         <td>{{ riwayatpelatihan.tahun }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.id}`)">Edit</button>
+                                                v-on:click.prevent="editRiwayatPelatihan(`${riwayatpelatihan.namakursusseminar}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
                                                 v-on:click.prevent="pelatihanDestroy(`${riwayatpelatihan.id}`)">Delete</button>
                                         </td>
@@ -269,14 +271,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="riwayatpekerjaan in post.id" :key="riwayatpekerjaan.id">
+                                    <tr v-for="riwayatpekerjaan in post.riwayatpekerjaan_data"
+                                        :key="riwayatpekerjaan.namaperusahaan">
                                         <td>{{ riwayatpekerjaan.namaperusahaan }}</td>
                                         <td>{{ riwayatpekerjaan.posisiterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.pendapatanterakhir }}</td>
                                         <td>{{ riwayatpekerjaan.tahun }}</td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary me-2"
-                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.id}`)">Edit</button>
+                                                v-on:click.prevent="editRiwayatPekerjaan(`${riwayatpekerjaan.namaperusahaan}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
                                                 v-on:click.prevent="pekerjaanDestroy(`${riwayatpekerjaan.id}`)">Delete</button>
                                         </td>
@@ -369,6 +372,25 @@ export default {
                 riwayatpekerjaan: riwayatpekerjaan,
             })
 
+        }
+
+        //function edit
+        function editPendidikan(id) {
+            for (var i = 0; i < post.pendidikan_data.length; i++) {
+
+                if (Object.values(post.pendidikan_data[i]).indexOf(id) !== -1) {
+                    console.log(id)
+                    post.pendidikan_form.jenjangpendidikanterakhir = post.pendidikan_data[i].jenjangpendidikanterakhir
+                    post.pendidikan_form.namaintitusiakademik = post.pendidikan_data[i].namaintitusiakademik
+                    post.pendidikan_form.jurusan = post.pendidikan_data[i].jurusan
+                    post.pendidikan_form.tahunlulus = post.pendidikan_data[i].tahunlulus
+                    post.pendidikan_form.ipk = post.pendidikan_data[i].ipk
+                    console.log('data ditemukan')
+                    post.pendidikan_data.splice(i, 1);
+                } else {
+                    console.log('data tidak ditemukan')
+                }
+            }
         }
 
         //function delete
