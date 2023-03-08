@@ -385,6 +385,11 @@ export default {
             post.riwayatpekerjaan_form = {}
         }
 
+        function resetStorePost() {
+            console.log('test')
+            post.post = {}
+        }
+
         function editPendidikan(id) {
             for (var i = 0; i < post.pendidikan_data.length; i++) {
 
@@ -469,11 +474,6 @@ export default {
             }
         }
 
-        function resetStorePost() {
-            console.log('test')
-            post.post = {}
-        }
-
         //function storePost
         function storePost() {
 
@@ -517,13 +517,13 @@ export default {
             resetPendidikan,
             resetRiwayatPelatihan,
             resetRiwayatPekerjaan,
+            resetStorePost,
             editPendidikan,
             deletePendidikan,
             editRiwayatPelatihan,
             deleteRiwayatPelatihan,
             editRiwayatPekerjaan,
             deleteRiwayatPekerjaan,
-            resetStorePost,
         }
 
     },

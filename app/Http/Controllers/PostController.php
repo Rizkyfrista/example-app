@@ -84,7 +84,6 @@ class PostController extends Controller
                     Pendidikan::create($pendidikan);
                 }
             }
-
             if (count($pelatihann) > 0) {
                 foreach ($pelatihann as $pel) {
                     $pel['post_id'] = $post->id;
@@ -137,6 +136,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
         //set validation
         $request->validate([
             'firstname' => 'required',
@@ -151,7 +151,7 @@ class PostController extends Controller
         ]);
 
         //update post
-        $post->update([
+        $updated = $post->update([
             'firstname'     => $request->firstname,
             'lastname'   => $request->lastname,
             'address'   => $request->address,
@@ -166,8 +166,92 @@ class PostController extends Controller
             'riwayatpekerjaan'   => $request->riwayatpekerjaan_data,
         ]);
 
-        if ($post) {
-            return Redirect::route('posts.index')->with('message', 'Data Berhasil Diupdate!');
+        if ($updated) {
+            $collectIdPendidikann = array_map(function ($pendidikan) {
+                return $pendidikan['id'];
+            }, $request->pendidikan);
+
+            if (count($collectIdPendidikann) > 0) {
+                foreach ($collectIdPendidikann as $idPendidikan) {
+                    $findPendidikan = Pendidikan::where('id', $idPendidikan)->where('post_id', $post->id)->first();
+
+                    $filterPendidikan = array_filter($request->pendidikan, function ($pendidikan) use ($idPendidikan) {
+                        return $pendidikan['id'] == $idPendidikan;
+                    });
+                    $result = [];
+
+                    if ($findPendidikan) {
+                        foreach ($filterPendidikan as $tempPendidikan) {
+                            $result = $tempPendidikan;
+                        }
+                        $findPendidikan->update($result);
+                    } else {
+                        foreach ($filterPendidikan as $tempPendidikan) {
+                            $tempPendidikan['post_id'] = $post->id;
+                            $result = $tempPendidikan;
+                        }
+                        Pendidikan::create($result);
+                    }
+                }
+            }
+
+            $collectIdPelatihann = array_map(function ($riwayatpelatihan) {
+                return $riwayatpelatihan['id'];
+            }, $request->riwayatpelatihan);
+
+            if (count($collectIdPelatihann) > 0) {
+                foreach ($collectIdPelatihann as $idPelatihan) {
+                    $findPelatihan = RiwayatPelatihan::where('id', $idPelatihan)->where('post_id', $post->id)->first();
+
+                    $filterPelatihan = array_filter($request->riwayatpelatihan, function ($riwayatpelatihan) use ($idPelatihan) {
+                        return $riwayatpelatihan['id'] == $idPelatihan;
+                    });
+                    $result = [];
+
+                    if ($findPelatihan) {
+                        foreach ($filterPelatihan as $tempPelatihan) {
+                            $result = $tempPelatihan;
+                        }
+                        $findPelatihan->update($result);
+                    } else {
+                        foreach ($filterPelatihan as $tempPelatihan) {
+                            $tempPelatihan['post_id'] = $post->id;
+                            $result = $tempPelatihan;
+                        }
+                        RiwayatPelatihan::create($result);
+                    }
+                }
+            }
+
+            $collectIdPekerjaann = array_map(function ($riwayatpekerjaan) {
+                return $riwayatpekerjaan['id'];
+            }, $request->riwayatpekerjaan);
+
+            if (count($collectIdPendidikann) > 0) {
+                foreach ($collectIdPekerjaann as $idPekerjaan) {
+                    $findPekerjaan = RiwayatPekerjaan::where('id', $idPekerjaan)->where('post_id', $post->id)->first();
+
+                    $filterPekerjaan = array_filter($request->riwayatpekerjaan, function ($riwayatpekerjaan) use ($idPekerjaan) {
+                        return $riwayatpekerjaan['id'] == $idPekerjaan;
+                    });
+                    $result = [];
+
+                    if ($findPekerjaan) {
+                        foreach ($filterPekerjaan as $tempPekerjaan) {
+                            $result = $tempPekerjaan;
+                        }
+                        $findPekerjaan->update($result);
+                    } else {
+                        foreach ($filterPekerjaan as $tempPekerjaan) {
+                            $tempPekerjaan['post_id'] = $post->id;
+                            $result = $tempPekerjaan;
+                        }
+                        RiwayatPekerjaan::create($result);
+                    }
+                }
+            }
+
+            return Redirect::route('posts.index')->with('message', 'Data Berhasil Di Update!');
         }
     }
 
@@ -190,30 +274,44 @@ class PostController extends Controller
         }
     }
 
-    public function pendidikanDestroy(Pendidikan $pendidikan)
+    public function pendidikanDestroy($id)
     {
         try {
-            $pendidikan->delete();
+            $pendidikan = Pendidikan::find($id);
+
+            if ($pendidikan) {
+                $pendidikan->delete();
+            }
+
             return redirect()->back()->with('message', 'Berhasil Delete Pendidikan');
         } catch (\Exception $e) {
             throw $e;
         }
     }
 
-    public function pelatihanDestroy(RiwayatPelatihan $pelatihan)
+    public function pelatihanDestroy($id)
     {
         try {
-            $pelatihan->delete();
+            $pelatihan = riwayatpelatihan::find($id);
+
+            if ($pelatihan) {
+                $pelatihan->delete();
+            }
+
             return redirect()->back()->with('message', 'Berhasil Delete Pelatihan');
         } catch (\Exception $e) {
             throw $e;
         }
     }
 
-    public function pekerjaanDestroy(RiwayatPekerjaan $pekerjaan)
+    public function pekerjaanDestroy($id)
     {
         try {
-            $pekerjaan->delete();
+            $pekerjaan = riwayatpekerjaan::find($id);
+            if ($pekerjaan) {
+                $pekerjaan->delete();
+            }
+
             return redirect()->back()->with('message', 'Berhasil Delete Pekerjaan');
         } catch (\Exception $e) {
             throw $e;
