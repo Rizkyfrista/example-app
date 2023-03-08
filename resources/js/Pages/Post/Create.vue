@@ -141,13 +141,6 @@
                                         <td>{{ pendidikan.tahunlulus }}</td>
                                         <td>{{ pendidikan.ipk }}</td>
                                         <td class="text-center">
-                                            <!-- <Link :href="`/pendidikan/${pendidikan.id}/edit`"
-                                                class="btn btn-sm btn-primary me-2">
-                                            EDIT</Link>
-                                            <button @click.prevent="deletePost(`${post.id}`)"
-                                                class="btn btn-sm btn-danger">DELETE</button> -->
-
-
                                             <button class="btn btn-sm btn-primary me-2"
                                                 v-on:click.prevent="editPendidikan(`${pendidikan.jenjangpendidikanterakhir}`)">Edit</button>
                                             <button class="btn btn-sm btn-danger"
@@ -297,7 +290,6 @@
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2"
                             v-on:click.prevent="storePost">SIMPAN</button>
-                        <button class="btn btn-warning btn-md shadow-sm" v-on:click.prevent="resetStorePost">RESET</button>
                     </div>
                 </form>
             </div>
@@ -352,6 +344,41 @@ export default {
             riwayatpekerjaan_data: [],
         });
 
+        //function storePost
+        function storePost() {
+
+            //define variable
+            let firstname = post.firstname
+            let lastname = post.lastname
+            let address = post.address
+            let city_state_zip = post.city_state_zip
+            let homephone = post.homephone
+            let cellphone = post.cellphone
+            let email = post.email
+            let appliedposition = post.appliedposition
+            let expectedsalary = post.expectedsalary
+            let pendidikan = post.pendidikan_data
+            let riwayatpelatihan = post.riwayatpelatihan_data
+            let riwayatpekerjaan = post.riwayatpekerjaan_data
+
+            //send data
+            Inertia.post('/posts/', {
+                firstname: firstname,
+                lastname: lastname,
+                address: address,
+                city_state_zip: city_state_zip,
+                homephone: homephone,
+                cellphone: cellphone,
+                email: email,
+                appliedposition: appliedposition,
+                expectedsalary: expectedsalary,
+                pendidikan: pendidikan,
+                riwayatpelatihan: riwayatpelatihan,
+                riwayatpekerjaan: riwayatpekerjaan,
+            })
+        }
+
+        //function store data
         function storePendidikan() {
             console.log(post.pendidikan_form);
             post.pendidikan_data.push(post.pendidikan_form);
@@ -370,6 +397,7 @@ export default {
             post.riwayatpekerjaan_form = {}
         }
 
+        //function reset
         function resetPendidikan() {
             console.log('test')
             post.pendidikan_form = {}
@@ -385,11 +413,7 @@ export default {
             post.riwayatpekerjaan_form = {}
         }
 
-        function resetStorePost() {
-            console.log('test')
-            post.post = {}
-        }
-
+        //function edit and delete
         function editPendidikan(id) {
             for (var i = 0; i < post.pendidikan_data.length; i++) {
 
@@ -474,40 +498,6 @@ export default {
             }
         }
 
-        //function storePost
-        function storePost() {
-
-            //define variable
-            let firstname = post.firstname
-            let lastname = post.lastname
-            let address = post.address
-            let city_state_zip = post.city_state_zip
-            let homephone = post.homephone
-            let cellphone = post.cellphone
-            let email = post.email
-            let appliedposition = post.appliedposition
-            let expectedsalary = post.expectedsalary
-            let pendidikan = post.pendidikan_data
-            let riwayatpelatihan = post.riwayatpelatihan_data
-            let riwayatpekerjaan = post.riwayatpekerjaan_data
-
-            //send data
-            Inertia.post('/posts/', {
-                firstname: firstname,
-                lastname: lastname,
-                address: address,
-                city_state_zip: city_state_zip,
-                homephone: homephone,
-                cellphone: cellphone,
-                email: email,
-                appliedposition: appliedposition,
-                expectedsalary: expectedsalary,
-                pendidikan: pendidikan,
-                riwayatpelatihan: riwayatpelatihan,
-                riwayatpekerjaan: riwayatpekerjaan,
-            })
-        }
-
         return {
             post,
             storePost,
@@ -517,7 +507,6 @@ export default {
             resetPendidikan,
             resetRiwayatPelatihan,
             resetRiwayatPekerjaan,
-            resetStorePost,
             editPendidikan,
             deletePendidikan,
             editRiwayatPelatihan,

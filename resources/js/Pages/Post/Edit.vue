@@ -7,7 +7,7 @@
                 <h4>Application Form</h4>
                 <hr>
                 <!-- HEADER -->
-                <form @submit.prevent="updatePost(post.updatePost.id)">
+                <form @submit.prevent="updatePost">
                     <div class="mb-3">
                         <label class="form-label">First Name</label>
                         <input type="text" class="form-control" v-model="post.firstname">
@@ -288,10 +288,6 @@
 
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary btn-md shadow-sm me-2">UPDATE</button>
-                        <button type="reset" class="btn btn-warning btn-md shadow-sm"
-                            v-on:click.prevent="resetUpdatePost">RESET</button>
-                        <!-- <button @click.prevent="resetUpdatePost(`${post.id}`)"
-                            class="btn btn-warning btn-md shadow-sm">RESET</button> -->
                     </div>
                 </form>
             </div>
@@ -374,10 +370,9 @@ export default {
                 riwayatpelatihan: riwayatpelatihan,
                 riwayatpekerjaan: riwayatpekerjaan,
             })
-
         }
 
-        //store data
+        //function store data
         function storePendidikan(id) {
             if (!id) {
                 const tempId = post.pendidikan_data.map(data => {
@@ -440,11 +435,6 @@ export default {
         function resetRiwayatPekerjaan(id) {
             console.log('test')
             post.riwayatpekerjaan_form = {}
-        }
-
-        function resetUpdatePost() {
-            console.log('test')
-            post.updatePost = null
         }
 
         //function edit
@@ -563,7 +553,6 @@ export default {
             resetPendidikan,
             resetRiwayatPelatihan,
             resetRiwayatPekerjaan,
-            resetUpdatePost,
             editPendidikan,
             editPelatihan,
             editPekerjaan,
